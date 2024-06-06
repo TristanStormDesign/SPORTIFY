@@ -32,8 +32,8 @@ body, html {
 .logos-section {
     display: flex;
     justify-content: space-around;
-    padding: 20px;
-    background-color: #181818;
+    padding: 10px;
+    background-color: #000000;
 }
 
 .logo-block {
@@ -43,7 +43,7 @@ body, html {
 }
 
 .logo-block img {
-    max-width: 100px;
+    max-width: 200px;
     height: auto;
 }
 
