@@ -19,7 +19,7 @@ const Navbar = ({ loggedIn, userEmail, onLogout }) => {
               <Link to="/products">Products</Link>
             </li>
             <li>
-              <Link to="/account">Account</Link>
+              <Link to="/cart">Cart</Link>
             </li>
             <li>
               <span onClick={onLogout}>Logout</span>
@@ -32,5 +32,6 @@ const Navbar = ({ loggedIn, userEmail, onLogout }) => {
 };
 
 export default Navbar;
+
 
 

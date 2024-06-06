@@ -17,7 +17,7 @@ const Home = () => {
                 <video autoPlay loop muted className="header-video">
                     <source src={videoSource} type="video/mp4" />
                 </video>
-                <img src={middleImage} alt="Middle Image" className="middle-image" />
+                <img src={middleImage} alt="Middle" className="middle-image" />
             </header>
             <section className="logos-section">
                 <div className="logo-block"><img src={sportLogo1} alt="Sport Logo 1" /></div>
