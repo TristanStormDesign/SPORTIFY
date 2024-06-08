@@ -22,6 +22,9 @@ const Navbar = ({ loggedIn, userEmail, onLogout }) => {
               <Link to="/cart">Cart</Link>
             </li>
             <li>
+              <Link to="/admin">Admin</Link>
+            </li>
+            <li>
               <span onClick={onLogout}>Logout</span>
             </li>
           </ul>

@@ -6,6 +6,7 @@ import Products from './pages/Products';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import CartPage from './pages/CartPage';
+import Admin from './pages/Admin';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/home" element={loggedIn ? <Home /> : <Navigate to="/login" />} />
           <Route path="/products" element={loggedIn ? <Products addToCart={addToCart} /> : <Navigate to="/login" />} />
           <Route path="/cart" element={loggedIn ? <CartPage cartItems={cartItems} setCartItems={setCartItems} /> : <Navigate to="/login" />} />
+          <Route path="/admin" element={loggedIn ? <Admin addToCart={addToCart} /> : <Navigate to="/admin" />} />
         </Routes>
       </div>
     </Router>
