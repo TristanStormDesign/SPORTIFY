@@ -6,11 +6,13 @@ body, html {
 
 .header {
     position: relative;
-    overflow: hidden;
     height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.header-video {
+.header-image {
     position: absolute;
     top: 0;
     left: 0;
@@ -19,56 +21,54 @@ body, html {
     object-fit: cover;
 }
 
-.middle-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 100%;
+.product-carousel {
+    position: relative;
     z-index: 1;
+    width: 100%;
 }
 
-/* Logos section styles */
-.logos-section {
+.carousel-item {
     display: flex;
-    justify-content: space-around;
-    padding: 10px;
-    background-color: #000000;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
 }
 
-.logo-block {
-    flex: 1 1 auto;
-    margin: 10px;
-    text-align: center;
-}
-
-.logo-block img {
-    max-width: 200px;
-    height: auto;
-}
-
-/* About section styles */
-.about-section {
+.carousel-content {
     display: flex;
     align-items: center;
-    padding: 40px;
-    background-color: #fff;
+    justify-content: flex-start;
+    width: 100%;
 }
 
-.store-image {
-    flex: 1;
-    max-width: 300px; /* Adjust the size as needed */
-    margin-right: 20px;
+.text-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 40px; /* Adjust the padding to space from the left edge */
 }
 
-.about-text {
-    flex: 2;
+.text-image {
+    max-width: 700px; /* Adjust the size as needed */
+    margin-bottom: 20px;
 }
 
-.about-text h2 {
-    margin-top: 0;
+.view-product-button {
+    padding: 10px 20px;
+    background-color: #3745B5; /* Updated color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px; /* Add margin to separate from dots */
 }
 
-.about-text p {
-    line-height: 1.6;
+.blank-section {
+    height: 50vh;
+    background-color: #f0f0f0;
+}
+
+/* Hide the dots */
+.carousel .control-dots {
+    display: none;
 }
