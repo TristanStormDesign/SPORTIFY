@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); // Import the cors middleware
+const cors = require('cors');
 const dotenv = require('dotenv');
+const multer = require('multer');
+const path = require('path');
 
 dotenv.config();
 
@@ -9,11 +11,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
-
-// Allow requests from all origins
 app.use(cors());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Establish database connection
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -21,15 +21,30 @@ mongoose.connect(process.env.MONGO_URI, {
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
 
-// User Routes
-const userRoutes = require('./routes/userRoutes'); // Correct path to userRoutes
-app.use('/api/users', userRoutes);
+// Multer setup
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    },
+});
+
+const upload = multer({ storage });
 
 // Product Routes
-const productRoutes = require('./routes/products'); // Path to product routes
+const productRoutes = require('./routes/products');
 app.use('/api/products', productRoutes);
 
-// Start the server
+// User Routes
+const userRoutes = require('./routes/userRoutes');
+app.use('/api/users', userRoutes);
+
+// Order Routes
+const orderRoutes = require('./routes/orders');
+app.use('/api/orders', orderRoutes);
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

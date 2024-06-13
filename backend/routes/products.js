@@ -1,6 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
+const multer = require('multer');
+const path = require('path');
+
+// Multer setup
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    },
+});
+
+const upload = multer({ storage });
 
 // Get all products
 router.get('/', async (req, res) => {
@@ -13,10 +27,11 @@ router.get('/', async (req, res) => {
 });
 
 // Add a new product
-router.post('/', async (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
     try {
         const { name, price, description } = req.body;
-        const newProduct = new Product({ name, price, description });
+        const imageUrl = req.file.filename;
+        const newProduct = new Product({ name, price, description, imageUrl });
         await newProduct.save();
         res.status(201).json(newProduct);
     } catch (err) {

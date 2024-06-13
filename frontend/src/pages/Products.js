@@ -27,7 +27,6 @@ const Products = ({ addToCart }) => {
     addToCart(product);
   };
 
-  // Filter products based on search query
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     product.description.toLowerCase().includes(searchQuery.toLowerCase())
@@ -46,6 +45,7 @@ const Products = ({ addToCart }) => {
       <div className="products-container">
         {filteredProducts.map(product => (
           <div key={product._id} className="product-block">
+            <img src={`http://localhost:5000/uploads/${product.imageUrl}`} alt={product.name} className="product-image" />
             <span>Name: {product.name}</span>
             <span>Price: R{product.price.toFixed(2)}</span>
             <p>Description: {product.description}</p>

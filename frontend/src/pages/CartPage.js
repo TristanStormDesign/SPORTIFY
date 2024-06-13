@@ -1,12 +1,28 @@
 import React, { useState } from 'react';
-import './CartPage.css';  // Correctly import the CSS file
+import axios from 'axios';
+import './CartPage.css';
 
 const CartPage = ({ cartItems, setCartItems }) => {
   const [isCheckedOut, setIsCheckedOut] = useState(false);
 
-  const handleCheckout = () => {
-    setIsCheckedOut(true);
-    setCartItems([]);
+  const handleCheckout = async () => {
+    try {
+      const orderItems = cartItems.map(item => ({
+        product: item._id,
+        quantity: 1, // Assuming quantity is 1 for simplicity
+      }));
+
+      const order = {
+        items: orderItems,
+        totalPrice: cartItems.reduce((total, item) => total + item.price, 0).toFixed(2),
+      };
+
+      await axios.post('http://localhost:5000/api/orders', order);
+      setIsCheckedOut(true);
+      setCartItems([]);
+    } catch (error) {
+      console.error('Error during checkout:', error);
+    }
   };
 
   const handleRemoveItem = (indexToRemove) => {
@@ -52,3 +68,4 @@ const CartPage = ({ cartItems, setCartItems }) => {
 };
 
 export default CartPage;
+
