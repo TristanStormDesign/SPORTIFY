@@ -5,6 +5,7 @@ import './CartPage.css';
 const CartPage = ({ cartItems, setCartItems }) => {
   const [isCheckedOut, setIsCheckedOut] = useState(false);
 
+  // Function to handle checkout process
   const handleCheckout = async () => {
     try {
       const orderItems = cartItems.map(item => ({
@@ -17,6 +18,7 @@ const CartPage = ({ cartItems, setCartItems }) => {
         totalPrice: cartItems.reduce((total, item) => total + item.price, 0).toFixed(2),
       };
 
+      // Post order data to the API
       await axios.post('http://localhost:5000/api/orders', order);
       setIsCheckedOut(true);
       setCartItems([]);
@@ -25,15 +27,18 @@ const CartPage = ({ cartItems, setCartItems }) => {
     }
   };
 
+  // Function to handle removing an item from the cart
   const handleRemoveItem = (indexToRemove) => {
     const updatedCartItems = cartItems.filter((_, index) => index !== indexToRemove);
     setCartItems(updatedCartItems);
   };
 
+  // Calculate the total price of items in the cart
   const totalPrice = cartItems.reduce((total, item) => total + item.price, 0).toFixed(2);
 
   return (
     <div className="cart-container">
+      {/* Display thank you message after checkout */}
       {isCheckedOut ? (
         <div className="thank-you-message">
           <h2>Thank you for your purchase!</h2>
@@ -41,6 +46,7 @@ const CartPage = ({ cartItems, setCartItems }) => {
       ) : (
         <div>
           <h2>Cart</h2>
+          {/* Display cart items if there are any */}
           {cartItems.length > 0 ? (
             <form>
               {cartItems.map((item, index) => (
@@ -68,4 +74,3 @@ const CartPage = ({ cartItems, setCartItems }) => {
 };
 
 export default CartPage;
-

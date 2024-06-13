@@ -4,6 +4,7 @@ import './Admin.css';
 import LoginModal from './LoginModal';
 
 function Admin() {
+    // State to manage products, filtered products, selected product for editing, etc.
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -16,11 +17,13 @@ function Admin() {
     const [orders, setOrders] = useState([]);
     const productsPerPage = 4;
 
+    // Fetch products and orders when the component mounts
     useEffect(() => {
         fetchProducts();
         fetchOrders();
     }, []);
 
+    // Function to fetch products from the API
     const fetchProducts = async () => {
         try {
             const response = await axios.get('http://localhost:5000/api/products');
@@ -31,6 +34,7 @@ function Admin() {
         }
     };
 
+    // Function to fetch orders from the API
     const fetchOrders = async () => {
         try {
             const response = await axios.get('http://localhost:5000/api/orders');
@@ -40,6 +44,7 @@ function Admin() {
         }
     };
 
+    // Handle search input to filter products based on query
     const handleSearch = (query) => {
         setSearchQuery(query);
         const filtered = products.filter(product =>
@@ -48,6 +53,7 @@ function Admin() {
         setFilteredProducts(filtered);
     };
 
+    // Handle adding a new product
     const handleAddProduct = async (product) => {
         try {
             const formData = new FormData();
@@ -67,6 +73,7 @@ function Admin() {
         }
     };
 
+    // Handle editing an existing product
     const handleEditProduct = async (product) => {
         try {
             const formData = new FormData();
@@ -88,6 +95,7 @@ function Admin() {
         }
     };
 
+    // Handle deleting a product
     const handleDeleteProduct = async (id) => {
         try {
             await axios.delete(`http://localhost:5000/api/products/${id}`);
@@ -97,27 +105,33 @@ function Admin() {
         }
     };
 
+    // Handle click on edit button to enable editing mode
     const handleEditClick = (product) => {
         setSelectedProduct(product);
         setIsEditing(true);
     };
 
+    // Handle form close action to reset editing state
     const handleFormClose = () => {
         setIsEditing(false);
         setSelectedProduct(null);
     };
 
+    // Handle pagination
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+    // Handle closing of the login modal
     const handleLoginClose = () => {
         setLoginModalVisible(false);
     };
 
+    // Handle successful login to set authentication state
     const handleLoginSuccess = () => {
         setIsAuthenticated(true);
         setLoginModalVisible(false);
     };
 
+    // Product form component for adding/editing products
     const ProductForm = ({ product, onClose, onSave }) => {
         const [formData, setFormData] = useState({
             name: '',
@@ -190,18 +204,21 @@ function Admin() {
         );
     };
 
+    // Calculate the current products to be displayed based on pagination
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
     return (
         <div>
+            {/* Login modal display */}
             {loginModalVisible && (
                 <LoginModal
                     onClose={handleLoginClose}
                     onLogin={handleLoginSuccess}
                 />
             )}
+            {/* Main admin content display based on authentication status */}
             {isAuthenticated ? (
                 <>
                     <header className="products-header">
@@ -212,6 +229,7 @@ function Admin() {
                             onChange={(e) => handleSearch(e.target.value)}
                         />
                     </header>
+                    {/* Display product form if in editing mode */}
                     {isEditing && (
                         <ProductForm
                             product={selectedProduct}
@@ -220,6 +238,7 @@ function Admin() {
                         />
                     )}
                     <div className="products-container">
+                        {/* Display products */}
                         {currentProducts.map(product => (
                             <div key={product._id} className="product-block">
                                 <img src={`http://localhost:5000/uploads/${product.imageUrl}`} alt={product.name} className="product-image" />
@@ -230,17 +249,20 @@ function Admin() {
                                 </div>
                             </div>
                         ))}
+                        {/* Display add new product block */}
                         {!isEditing && (
                             <div className="product-block add-product-block" onClick={() => setIsEditing(true)}>
                                 <span>Add New Product</span>
                             </div>
                         )}
                     </div>
+                    {/* Pagination controls */}
                     <div className="pagination">
                         {Array.from({ length: Math.ceil(filteredProducts.length / productsPerPage) }, (_, i) => (
                             <button key={i + 1} onClick={() => paginate(i + 1)}>{i + 1}</button>
                         ))}
                     </div>
+                    {/* Orders section */}
                     <div className="orders-section">
                         <h2>Orders</h2>
                         <div className="orders-container">
