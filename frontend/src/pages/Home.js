@@ -16,7 +16,7 @@ const Home = () => {
         <img src={headerImage} alt="Header" className="header-image" />
         <div className="header-content">
           <h1>Welcome to Sportify</h1>
-          <p>Your one-stop shop for all your sporting needs</p>
+          <p>Discover the latest in sports gear and apparel at Sportify, your ultimate online destination for all things sports. At Sportify, we pride ourselves on offering a carefully curated selection of premium quality products that cater to athletes and fitness enthusiasts of all levels.</p>
           <button className="shop-now-button" onClick={handleShopNowClick}>Shop Now</button>
         </div>
       </header>
