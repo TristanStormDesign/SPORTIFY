@@ -17,7 +17,6 @@ body {
 
 .products-header {
     text-align: center;
-    margin: 20px 0;
 }
 
 .products-header input {
@@ -34,7 +33,7 @@ body {
 .products-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 20px 0;
 }
 
@@ -44,18 +43,24 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     margin: 10px;
     padding: 20px;
-    width: 200px;
-    text-align: center;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
 }
 
 .product-image {
     width: 100%;
     height: auto;
-    margin-bottom: 10px;
 }
 
 .product-details {
     margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    column-gap: 30px;
 }
 
 .product-details span {

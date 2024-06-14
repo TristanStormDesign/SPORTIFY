@@ -45,6 +45,7 @@ const Products = ({ addToCart }) => {
           placeholder="Search products..."
           value={searchQuery}
           onChange={(e) => handleSearch(e.target.value)}
+          style={{ margin: 0 }}
         /> {/* Search input field */}
       </header>
       <div className="products-container">

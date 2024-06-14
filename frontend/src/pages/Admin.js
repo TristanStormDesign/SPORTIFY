@@ -223,10 +223,12 @@ function Admin() {
                 <>
                     <header className="products-header">
                         <input
+                        style={{ margin: 0 }}
                             type="text"
                             placeholder="Search products..."
                             value={searchQuery}
                             onChange={(e) => handleSearch(e.target.value)}
+                            
                         />
                     </header>
                     {/* Display product form if in editing mode */}
