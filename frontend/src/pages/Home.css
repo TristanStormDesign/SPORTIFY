@@ -1,86 +1,55 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
-
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
-}
-
-body {
-    min-height: 100vh;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    background-color: rgb(19, 19, 19);
-    margin: 0;
-    padding: 0;
-    color: #ccc;
-}
-
+/* Ensure the container takes up the full height of the viewport */
 .home-container {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    text-align: center;
-    padding: 20px;
-}
-
-.header {
+    height: 81.7vh;
+    background-size: cover;
+    background-position: center;
     position: relative;
-    width: 100%;
+  }
+  
+  /* Overlay to hold the content */
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(5px);
+    width: 50%;
     height: 100%;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-}
-
-.header-image {
-    width: 100%;
-    height: auto;
-    max-height: 500px;
-    object-fit: cover;
-}
-
-.header-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.header-content h1 {
-    font-size: 2.5rem;
+    padding-left: 50px;
+    color: white;
+  }
+  
+  /* Style for the title image */
+  .title-image {
+    width: 700px;
+    max-width: 100%;
+    margin-bottom: 0px;
+  }
+  
+  /* Style for the description text */
+  .description {
     margin-bottom: 20px;
-    color: #fff;
-}
-
-.header-content p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-    color: #ccc;
-}
-
-.shop-now-button {
-    padding: 15px 30px;
-    margin-top: 10px;
-    background-color: #3745b5;
+    width: 700px;
+    line-height: 1.5;
+  }
+  
+  /* Style for the button */
+  .products-button {
+    padding: 10px 20px;
+    background-color: #3745B5;
+    width: 200px;
+    height: 50px;
+    color: #ffffff;
     border: none;
-    border-radius: 5px;
-    color: #ffffff;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.3s ease, border 0.3s ease;
-}
-
-.shop-now-button:hover {
-    background-color: #263181;
-    border: 1px solid #263181;
-    color: #ffffff;
-}
+    font-size: 16px;
+  }
+  
+  .products-button:hover {
+    background-color: #ddd;
+    background-color: #232d77;
+  }
+  

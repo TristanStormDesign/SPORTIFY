@@ -6,7 +6,6 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer-left-section">
-        <h3>Sportify</h3>
         <p>© 2024 Sportify. All rights reserved.</p>
       </div>
       <div className="footer-right-section">
